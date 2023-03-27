@@ -1,4 +1,4 @@
-#Design and implementation of vectorized sorting algorithms
+# Design and implementation of vectorized sorting algorithms
 This repository contains my **master thesis** from 2018 on the design and implementation of vectorized sorting algorithms.
 
 In the master thesis I investigate the **suitability of vector instructions** for common sorting algorithms like **sorting networks**, **mergesort** and **quicksort**.

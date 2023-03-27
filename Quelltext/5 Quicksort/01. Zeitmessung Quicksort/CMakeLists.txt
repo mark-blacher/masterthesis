@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.7)
+project(speedtest_qs LANGUAGES CXX)
+
+set(CID ${CMAKE_CXX_COMPILER_ID})
+
+IF (WIN32)
+    if ("${CID}" STREQUAL "GNU")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s -O2 -std=c++14 -Wall -mavx2 ")
+    elseif ("${CID}" STREQUAL "Intel")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /O2 /Qstd=c++14 /Wall /arch:avx2 /Qdiag-disable:11074,11075 /Qipp /Qipp-link:static")
+    endif ()
+ELSE()
+    if ("${CID}" STREQUAL "Intel")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -std=c++14 -Wall -mavx2 -ipp -ipp-link=static")
+    else()
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s -O2 -std=c++14 -Wall -mavx2")
+    endif ()
+ENDIF()
+
+add_executable(speedtest_qs avx2sort.h speedtest_qs.cpp)

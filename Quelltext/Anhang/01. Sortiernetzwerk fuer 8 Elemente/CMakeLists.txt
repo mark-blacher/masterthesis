@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.7)
+project(sort_8_permutation_shuffle LANGUAGES CXX)
+
+set(CID ${CMAKE_CXX_COMPILER_ID})
+
+IF (WIN32)
+    if ("${CID}" STREQUAL "GNU")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s -O2 -std=c++14 -Wall -mavx2 -static-libstdc++")
+    elseif ("${CID}" STREQUAL "Intel")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /O2 /Qstd=c++14 /Wall /arch:avx2 /Qdiag-disable:11074,11075")
+    endif ()
+ELSE()
+    if ("${CID}" STREQUAL "Intel")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -std=c++14 -Wall -mavx2")
+    else()
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s -O2 -std=c++14 -Wall -mavx2 -static-libstdc++")
+    endif ()
+ENDIF()
+
+add_executable(sort_8_permutation_shuffle sort_8_permutation_shuffle.cpp)
